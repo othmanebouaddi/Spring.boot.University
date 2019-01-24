@@ -33,6 +33,7 @@ public class Prof extends Person{
 	private String salary;
 	
 	
+	//Relation bettween Student and Prof;
 	@ManyToMany(fetch = FetchType.LAZY,
 			cascade = {
 					CascadeType.PERSIST,

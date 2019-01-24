@@ -36,11 +36,12 @@ public class Cours {
 	@ApiModelProperty(notes = "The credits of Cours")
 	private Integer credits;
 	
-	
+	//Relation bettwenn Cours and GroupCours
 	@OneToMany( fetch = FetchType.LAZY, mappedBy = "cours", cascade = CascadeType.ALL)
     private Set<GroupeCours> groupeCours;
 	
 	
+	//Relation bettween Cours and Program
 	@ManyToMany(fetch = FetchType.LAZY,
 			cascade = {
 					CascadeType.PERSIST,

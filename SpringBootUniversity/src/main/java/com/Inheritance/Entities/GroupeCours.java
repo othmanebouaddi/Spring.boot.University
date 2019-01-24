@@ -1,9 +1,15 @@
 package com.Inheritance.Entities;
 
-import javax.persistence.Column;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column; 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,10 +27,22 @@ public class GroupeCours {
 	private String initials;
 
 	@ManyToOne
-	@JoinColumn(name = "CoursInitials", referencedColumnName = "CoursInitials")
+	@JoinColumn(name = "name", referencedColumnName = "name")
 	
 	@JsonIgnore
 	private Cours cours;
+	
+	
+	//Relation between GroupCours and Session
+	@ManyToMany(fetch = FetchType.LAZY,
+			cascade = {
+					CascadeType.PERSIST,
+					CascadeType.MERGE
+			},
+			mappedBy = "groupeCours")
+	@JsonIgnore
+	private Set<Session> sessions = new HashSet<>();
+	
 	
 	
 	//Constructors
@@ -51,7 +69,12 @@ public class GroupeCours {
 		this.cours = cours;
 	}
 	
-	
+	public Set<Session> getSessions() {
+		return sessions;
+	}
+	public void setSessions(Set<Session> sessions) {
+		this.sessions = sessions;
+	}
 	
 	
 

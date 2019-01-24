@@ -8,8 +8,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -36,6 +38,9 @@ public class Student extends Person{
 	@JoinColumn(name = "Program_initials", referencedColumnName = "Program_initials")
 	@JsonIgnore
 	private Program program;
+	
+	
+	
 	
 	
 
@@ -101,5 +106,5 @@ public class Student extends Person{
 		this.program = program;
 	}
 	
-
+	
 }
