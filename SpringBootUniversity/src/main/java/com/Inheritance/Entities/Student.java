@@ -40,11 +40,7 @@ public class Student extends Person{
 	private Program program;
 	
 	
-	
-	
-	
-
-	//Relation between Student and prof
+	//Relation between Student and GroupeCours
 	@ManyToMany(fetch = FetchType.LAZY,
 			cascade = {
 					CascadeType.PERSIST,
@@ -52,7 +48,19 @@ public class Student extends Person{
 			},
 			mappedBy = "student")
 	@JsonIgnore
-	private Set<Prof> prof = new HashSet<>();
+	private Set<GroupeCours> groupeCours = new HashSet<>();
+	
+	
+
+//	//Relation between Student and prof
+//	@ManyToMany(fetch = FetchType.LAZY,
+//			cascade = {
+//					CascadeType.PERSIST,
+//					CascadeType.MERGE
+//			},
+//			mappedBy = "student")
+//	@JsonIgnore
+//	private Set<Prof> prof = new HashSet<>();
 	
 	
 	
@@ -90,16 +98,24 @@ public class Student extends Person{
 	}
 	
 	
-	public Set<Prof> getProf() {
-		return prof;
-	}
-
-	public void setProf(Set<Prof> prof) {
-		this.prof = prof;
-	}
+//	public Set<Prof> getProf() {
+//		return prof;
+//	}
+//
+//	public void setProf(Set<Prof> prof) {
+//		this.prof = prof;
+//	}
 	
 	public Program getProgram() {
 		return program;
+	}
+
+	public Set<GroupeCours> getGroupeCours() {
+		return groupeCours;
+	}
+
+	public void setGroupeCours(Set<GroupeCours> groupeCours) {
+		this.groupeCours = groupeCours;
 	}
 
 	public void setProgram(Program program) {

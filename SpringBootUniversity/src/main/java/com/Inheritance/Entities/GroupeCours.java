@@ -26,11 +26,20 @@ public class GroupeCours {
 	@ApiModelProperty(notes = "The initials of GroupeCours")
 	private String initials;
 
+	
+	//Relation between GroupCours and Course
 	@ManyToOne
 	@JoinColumn(name = "name", referencedColumnName = "name")
-	
 	@JsonIgnore
 	private Cours cours;
+	
+	
+	//Relation between GroupCours and Prof
+	@ManyToOne
+	@JoinColumn(name = "registrationNumber", referencedColumnName = "registrationNumber")
+	@JsonIgnore
+	private Prof Prof;
+	
 	
 	
 	//Relation between GroupCours and Session
@@ -42,6 +51,17 @@ public class GroupeCours {
 			mappedBy = "groupeCours")
 	@JsonIgnore
 	private Set<Session> sessions = new HashSet<>();
+	
+	//Relation between GroupCours and Student
+	@ManyToMany(fetch = FetchType.LAZY,
+			cascade = {
+					CascadeType.PERSIST,
+					CascadeType.MERGE
+			},
+			mappedBy = "groupeCours")
+	@JsonIgnore
+	private Set<Student> Students = new HashSet<>();
+
 	
 	
 	
@@ -76,6 +96,18 @@ public class GroupeCours {
 		this.sessions = sessions;
 	}
 	
+	public Set<Student> getStudents() {
+		return Students;
+	}
+	public void setStudents(Set<Student> students) {
+		Students = students;
+	}
 	
+	public Prof getProf() {
+		return Prof;
+	}
+	public void setProf(Prof prof) {
+		Prof = prof;
+	}
 
 }

@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,18 +34,25 @@ public class Prof extends Person{
 	private String salary;
 	
 	
-	//Relation bettween Student and Prof;
-	@ManyToMany(fetch = FetchType.LAZY,
-			cascade = {
-					CascadeType.PERSIST,
-					CascadeType.MERGE
-			})
-		@JoinTable(name = "prof_student",
-			joinColumns = { @JoinColumn(name = "student_Personid") },
-			inverseJoinColumns = { @JoinColumn(name = "prof_Personid") })
-		@JsonIgnore
-		private Set<Student> student = new HashSet<>();
+	//Relation bettwenn Prof and GroupCours
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "prof", cascade = CascadeType.ALL)
+    private Set<GroupeCours> groupeCours;
 	
+	
+//	//Relation bettween Student and Prof;
+//	@ManyToMany(fetch = FetchType.LAZY,
+//			cascade = {
+//					CascadeType.PERSIST,
+//					CascadeType.MERGE
+//			})
+//		@JoinTable(name = "prof_student",
+//			joinColumns = { @JoinColumn(name = "student_Personid") },
+//			inverseJoinColumns = { @JoinColumn(name = "prof_Personid") })
+//		@JsonIgnore
+//		private Set<Student> student = new HashSet<>();
+	
+	
+
 	
 
 	//Constructors
@@ -84,13 +92,22 @@ public class Prof extends Person{
 		this.registrationNumber = registrationNumber;
 	}
 	
-	public Set<Student> getStudent() {
-		return student;
+	public Set<GroupeCours> getGroupeCours() {
+		return groupeCours;
 	}
 
-	public void setStudent(Set<Student> student) {
-		this.student = student;
+	public void setGroupeCours(Set<GroupeCours> groupeCours) {
+		this.groupeCours = groupeCours;
 	}
+	
+	
+//	public Set<Student> getStudent() {
+//		return student;
+//	}
+//
+//	public void setStudent(Set<Student> student) {
+//		this.student = student;
+//	}
 	
 	
 	
