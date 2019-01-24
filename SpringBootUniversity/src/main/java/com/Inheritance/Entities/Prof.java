@@ -39,21 +39,7 @@ public class Prof extends Person{
     private Set<GroupeCours> groupeCours;
 	
 	
-//	//Relation bettween Student and Prof;
-//	@ManyToMany(fetch = FetchType.LAZY,
-//			cascade = {
-//					CascadeType.PERSIST,
-//					CascadeType.MERGE
-//			})
-//		@JoinTable(name = "prof_student",
-//			joinColumns = { @JoinColumn(name = "student_Personid") },
-//			inverseJoinColumns = { @JoinColumn(name = "prof_Personid") })
-//		@JsonIgnore
-//		private Set<Student> student = new HashSet<>();
-	
-	
 
-	
 
 	//Constructors
 	public Prof() {

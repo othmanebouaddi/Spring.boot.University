@@ -51,18 +51,6 @@ public class Student extends Person{
 	private Set<GroupeCours> groupeCours = new HashSet<>();
 	
 	
-
-//	//Relation between Student and prof
-//	@ManyToMany(fetch = FetchType.LAZY,
-//			cascade = {
-//					CascadeType.PERSIST,
-//					CascadeType.MERGE
-//			},
-//			mappedBy = "student")
-//	@JsonIgnore
-//	private Set<Prof> prof = new HashSet<>();
-	
-	
 	
 
 	//Constructors
