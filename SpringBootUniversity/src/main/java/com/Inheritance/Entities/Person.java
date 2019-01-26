@@ -1,4 +1,4 @@
-package com.Inheritance.Entities;
+package com.Inheritance.entities;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -25,7 +25,6 @@ public abstract class Person {
 	}
 	public Person() {
 	}
-	
 	
 	//Getters and Setters
 	public Integer getPersonid() {

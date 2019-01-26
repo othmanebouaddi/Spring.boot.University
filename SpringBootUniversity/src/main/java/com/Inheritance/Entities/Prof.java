@@ -1,29 +1,26 @@
-package com.Inheritance.Entities;
+package com.Inheritance.entities;
 
-import java.util.HashSet;
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
-
+ 
 @Entity
-@Table(name="Profs")
-public class Prof extends Person{
+@Table(name="profs")
+public class Prof extends Person implements Serializable{
 
-	@Column(name="registrationNumber")
-	@ApiModelProperty(notes = "The registrationNumber of the Prof")
-	private String registrationNumber;
+	@Column(name="matricul")
+	@ApiModelProperty(notes = "The Id of the Prof")
+	private String matricul;
 	
 	@Column(name="occupation")
 	@ApiModelProperty(notes = "The occupation of the Prof")
@@ -36,22 +33,23 @@ public class Prof extends Person{
 	
 	//Relation bettwenn Prof and GroupCours
 	@OneToMany( fetch = FetchType.LAZY, mappedBy = "prof", cascade = CascadeType.ALL)
+	@JsonIgnore
     private Set<GroupeCours> groupeCours;
 	
 	
 
 
 	//Constructors
-	public Prof() {
-		super();
-	}
-	
-	public Prof(Integer personid, String name, String sex, String address, String registrationNumber,
+	public Prof(Integer personid, String name, String sex, String address, String matricul,
 			String occupation, String salary) {
 		super(personid, name, sex, address);
-		this.registrationNumber = registrationNumber;
+		this.matricul = matricul;
 		this.occupation = occupation;
 		this.salary = salary;
+	}
+	
+	public Prof() {
+		super();
 	}
 
 	//Getters and Setters
@@ -70,12 +68,12 @@ public class Prof extends Person{
 		this.salary = salary;
 	}
 
-	public String getRegistrationNumber() {
-		return registrationNumber;
+	public String getMatricul() {
+		return matricul;
 	}
 
-	public void setRegistrationNumber(String registrationNumber) {
-		this.registrationNumber = registrationNumber;
+	public void setMatricul(String matricul) {
+		this.matricul = matricul;
 	}
 	
 	public Set<GroupeCours> getGroupeCours() {
@@ -86,14 +84,6 @@ public class Prof extends Person{
 		this.groupeCours = groupeCours;
 	}
 	
-	
-//	public Set<Student> getStudent() {
-//		return student;
-//	}
-//
-//	public void setStudent(Set<Student> student) {
-//		this.student = student;
-//	}
 	
 	
 	

@@ -1,27 +1,35 @@
-package com.Inheritance.Entities;
+package com.Inheritance.entities;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;  
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column; 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="groupeCours")
-public class GroupeCours {
+public class GroupeCours implements Serializable{
+	
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="GroupeCoursId")
+	@ApiModelProperty(notes = "The Id of GroupeCours")
+	private Integer GroupeCoursId;
+	
 	@Column(name="GroupeCoursInitials")
 	@ApiModelProperty(notes = "The initials of GroupeCours")
 	private String initials;
@@ -36,46 +44,50 @@ public class GroupeCours {
 	
 	//Relation between GroupCours and Prof
 	@ManyToOne
-	@JoinColumn(name = "registrationNumber", referencedColumnName = "registrationNumber")
+	@JoinColumn(name = "matricul", referencedColumnName = "matricul")
 	@JsonIgnore
-	private Prof Prof;
+	private Prof prof;
 	
 	
 	
 	//Relation between GroupCours and Session
-	@ManyToMany(fetch = FetchType.LAZY,
-			cascade = {
-					CascadeType.PERSIST,
-					CascadeType.MERGE
-			},
-			mappedBy = "groupeCours")
+	@OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "groupeCours")
 	@JsonIgnore
-	private Set<Session> sessions = new HashSet<>();
+    private Session session;
 	
+
 	//Relation between GroupCours and Student
-	@ManyToMany(fetch = FetchType.LAZY,
-			cascade = {
-					CascadeType.PERSIST,
-					CascadeType.MERGE
-			},
-			mappedBy = "groupeCours")
+	@ManyToOne
+	@JoinColumn(name = "code", referencedColumnName = "code")
 	@JsonIgnore
-	private Set<Student> Students = new HashSet<>();
+	private Student student;
+	
 
 	
 	
 	
 	//Constructors
-	public GroupeCours(String initials, Cours cours) {
+	public GroupeCours(Integer GroupeCoursId, String initials) {
 		super();
+		this.GroupeCoursId = GroupeCoursId;
 		this.initials = initials;
-		this.cours = cours;
-	}
-	public GroupeCours() {
 	}
 	
+	public GroupeCours() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	//Setters and Getters
+	public Integer getGroupeCoursId() {
+		return GroupeCoursId;
+	}
+	public void setGroupeCoursId(Integer groupeCoursId) {
+		GroupeCoursId = groupeCoursId;
+	}
+	
 	public String getInitials() {
 		return initials;
 	}
@@ -89,25 +101,25 @@ public class GroupeCours {
 		this.cours = cours;
 	}
 	
-	public Set<Session> getSessions() {
-		return sessions;
+	public Session getSession() {
+		return session;
 	}
-	public void setSessions(Set<Session> sessions) {
-		this.sessions = sessions;
+	public void setSession(Session session) {
+		this.session = session;
 	}
 	
-	public Set<Student> getStudents() {
-		return Students;
+	public Student getStudent() {
+		return student;
 	}
-	public void setStudents(Set<Student> students) {
-		Students = students;
+	public void setStudents(Student student) {
+		this.student = student;
 	}
 	
 	public Prof getProf() {
-		return Prof;
+		return prof;
 	}
 	public void setProf(Prof prof) {
-		Prof = prof;
+		this.prof = prof;
 	}
 
 }

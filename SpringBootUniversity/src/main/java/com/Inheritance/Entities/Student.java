@@ -1,6 +1,7 @@
-package com.Inheritance.Entities;
+package com.Inheritance.entities;
 
-import java.util.HashSet; 
+import java.io.Serializable;
+import java.util.HashSet;  
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -8,7 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -20,15 +20,15 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name="students")
-public class Student extends Person{
+public class Student extends Person implements Serializable{
 	
 	
 
-	@Column(name="PermanenteCode")
-	@ApiModelProperty(notes = "The database generated Student PermanenteCode")
-	private String PermanenteCode;
+	@Column(name="code")
+	@ApiModelProperty(notes = "The Student code")
+	private String code;
 	
-	@Column(name="registrationNumber")
+	@Column(name="stillStudying")
 	@ApiModelProperty(notes = "The Student stillStudying")
 	private Boolean stillStudying;
 	
@@ -41,40 +41,34 @@ public class Student extends Person{
 	
 	
 	//Relation between Student and GroupeCours
-	@ManyToMany(fetch = FetchType.LAZY,
-			cascade = {
-					CascadeType.PERSIST,
-					CascadeType.MERGE
-			},
-			mappedBy = "student")
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "student", cascade = CascadeType.ALL)
 	@JsonIgnore
-	private Set<GroupeCours> groupeCours = new HashSet<>();
+    private Set<GroupeCours> groupeCours;
+
 	
 	
 	
 
 	//Constructors
+	public Student(Integer personid, String name, String sex, String address, String code,
+			Boolean stillStudying) {
+		super(personid, name, sex, address);
+		this.code = code;
+		this.stillStudying = stillStudying;
+	}
+
 	public Student() {
 		super();
 	}
 
-	public Student(Integer personid, String name, String sex, String address, String permanenteCode,
-			Boolean stillStudying) {
-		super(personid, name, sex, address);
-		this.PermanenteCode = permanenteCode;
-		this.stillStudying = stillStudying;
-	}
-
-
-
 
 	//Setters and Getters
-	public String getPermanenteCode() {
-		return PermanenteCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setPermanenteCode(String permanenteCode) {
-		PermanenteCode = permanenteCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public Boolean getStillStudying() {
@@ -85,14 +79,6 @@ public class Student extends Person{
 		this.stillStudying = stillStudying;
 	}
 	
-	
-//	public Set<Prof> getProf() {
-//		return prof;
-//	}
-//
-//	public void setProf(Set<Prof> prof) {
-//		this.prof = prof;
-//	}
 	
 	public Program getProgram() {
 		return program;

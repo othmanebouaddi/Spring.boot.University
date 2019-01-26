@@ -1,4 +1,4 @@
-package com.Inheritance.Entities;
+package com.Inheritance.entities;
 
 import java.util.HashSet; 
 import java.util.Set;
@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,22 +24,33 @@ import io.swagger.annotations.ApiModelProperty;
 public class Session {
 	
 	@Id
+	@Column(name="session_id")
+	@ApiModelProperty(notes = "The id of Session")
+	private Integer id;
+	
+	
 	@Column(name="session_name")
 	@ApiModelProperty(notes = "The name of Session")
 	private String name;
 	
 	
 	//Relation between Session and GoupeCours
-	@ManyToMany(fetch = FetchType.LAZY,
-		cascade = {
-				CascadeType.PERSIST,
-				CascadeType.MERGE
-		})
-	@JoinTable(name = "groupecours_session",
-		joinColumns = { @JoinColumn(name = "GroupeCoursInitials") },
-		inverseJoinColumns = { @JoinColumn(name = "session_name") })
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "session_id", nullable = true)
 	@JsonIgnore
-	private Set<GroupeCours> groupeCours = new HashSet<>();
+    private GroupeCours groupeCours;
+	
+	
+//	@ManyToMany(fetch = FetchType.LAZY,
+//		cascade = {
+//				CascadeType.PERSIST,
+//				CascadeType.MERGE
+//		})
+//	@JoinTable(name = "groupecours_session",
+//		joinColumns = { @JoinColumn(name = "GroupeCoursInitials") },
+//		inverseJoinColumns = { @JoinColumn(name = "session_name") })
+//	@JsonIgnore
+//	private Set<GroupeCours> groupeCours = new HashSet<>();
 
 	
 	
@@ -47,10 +59,13 @@ public class Session {
 	
 
 	//Constructor
-	public Session(String name, Set<GroupeCours> groupeCours) {
+	public Session(Integer id, String name) {
 		super();
+		this.id = id;
 		this.name = name;
-		this.groupeCours = groupeCours;
+	}
+	
+	public Session() {
 	}
 	
 	//Getters and Setters
@@ -64,15 +79,20 @@ public class Session {
 	}
 
 
-	public Set<GroupeCours> getGroupeCours() {
+	public GroupeCours getGroupeCours() {
 		return groupeCours;
 	}
 
 
-	public void setGroupeCours(Set<GroupeCours> groupeCours) {
+	public void setGroupeCours(GroupeCours groupeCours) {
 		this.groupeCours = groupeCours;
 	}
-	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	
 	

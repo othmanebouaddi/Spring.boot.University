@@ -1,4 +1,4 @@
-package com.Inheritance.Entities;
+package com.Inheritance.entities;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,7 +26,7 @@ public class Program {
 	@Id
 	@Column(name="Program_initials")
 	@ApiModelProperty(notes = "The initials of the  Program")
-	private String initials;
+	private Integer Program_initials;
 	
 	@Column(name="name")
 	@ApiModelProperty(notes = "The name of Program")
@@ -41,8 +41,8 @@ public class Program {
 		@JoinTable(name = "program_cours",
 			joinColumns = { @JoinColumn(name = "CoursInitials") },
 			inverseJoinColumns = { @JoinColumn(name = "Program_initials") })
-		@JsonIgnore
-		private Set<Cours> cours = new HashSet<>();
+	@JsonIgnore
+	private Set<Cours> cours = new HashSet<>();
 	
 	//Relation between Program and Student
 	@OneToMany( fetch = FetchType.LAZY, mappedBy = "program", cascade = CascadeType.ALL)
@@ -55,9 +55,9 @@ public class Program {
 	public Program() {
 	}
 	
-	public Program(String name, String initials) {
+	public Program(String name, Integer Program_initials) {
 		this.name = name;
-		this.initials = initials;
+		this.Program_initials = Program_initials;
 	}
 	
 	
@@ -71,12 +71,12 @@ public class Program {
 		this.name = name;
 	}
 
-	public String getInitials() {
-		return initials;
+	public Integer getInitials() {
+		return Program_initials;
 	}
 
-	public void setInitials(String initials) {
-		this.initials = initials;
+	public void setInitials(Integer Program_initials) {
+		this.Program_initials = Program_initials;
 	}
 	
 	public Set<Cours> getCours() {

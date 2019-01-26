@@ -1,5 +1,6 @@
-package com.Inheritance.Entities;
+package com.Inheritance.entities;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name="cours")
-public class Cours {
+public class Cours implements Serializable{
 	
 	@Id
 	@Column(name="CoursInitials")
@@ -38,6 +39,7 @@ public class Cours {
 	
 	//Relation bettwenn Cours and GroupCours
 	@OneToMany( fetch = FetchType.LAZY, mappedBy = "cours", cascade = CascadeType.ALL)
+	@JsonIgnore
     private Set<GroupeCours> groupeCours;
 	
 	
@@ -53,17 +55,21 @@ public class Cours {
 
 
 	//Constructors
-	public Cours(String initials, String name, Integer credits, Set<GroupeCours> groupeCours) {
+	public Cours(String initials, String name, Integer credits) {
 		super();
 		this.initials = initials;
 		this.name = name;
 		this.credits = credits;
-		this.groupeCours = groupeCours;
 	}
+
+	
 	public Cours() {
+		super();
 	}
-	
-	
+
+
+
+
 	//Setters and Getters
 	public String getInitials() {
 		return initials;
