@@ -37,31 +37,28 @@ public class GroupeCours implements Serializable{
 	
 	//Relation between GroupCours and Course
 	@ManyToOne
-	@JoinColumn(name = "name", referencedColumnName = "name")
+	@JoinColumn(name = "CoursInitials", referencedColumnName = "CoursInitials")
 	@JsonIgnore
 	private Cours cours;
 	
 	
 	//Relation between GroupCours and Prof
 	@ManyToOne
-	@JoinColumn(name = "matricul", referencedColumnName = "matricul")
-	@JsonIgnore
+	@JoinColumn(name = "matriculProf", referencedColumnName = "matriculProf")
 	private Prof prof;
 	
 	
 	
-	//Relation between GroupCours and Session
-	@OneToOne(fetch = FetchType.LAZY,
-            cascade =  CascadeType.ALL,
-            mappedBy = "groupeCours")
-	@JsonIgnore
-    private Session session;
+	//Relation between Session and GoupeCours
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "session_id", nullable = true)
+	private Session session;
+
 	
 
 	//Relation between GroupCours and Student
 	@ManyToOne
-	@JoinColumn(name = "code", referencedColumnName = "code")
-	@JsonIgnore
+	@JoinColumn(name = "CodeStudent", referencedColumnName = "CodeStudent")
 	private Student student;
 	
 

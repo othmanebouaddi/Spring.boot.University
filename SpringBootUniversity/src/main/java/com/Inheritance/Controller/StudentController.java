@@ -27,17 +27,17 @@ public class StudentController {
 	
 	
 	
-	@PostMapping(value="/student/inscriptionProgram/{programId}")
-    public Student inscriptionProgram(@PathVariable("programId") Integer programId, @Valid @RequestBody Student student) {
-		return studentService.inscriptionProgram(student, programId);
+	@PostMapping(value="/student/inscriptionProgram/{sex}")
+    public Student createStudent(@PathVariable("sex") String sex, @Valid @RequestBody Student student) {
+		return studentService.createStudent(student, sex);
        
     }
 	
-	@PutMapping(value="/student/inscriptionCours/{sudentId}/{groupeCoursId}")
-    public Student inscriptionCours(@PathVariable("groupeCoursId") Integer groupeCoursId, @PathVariable("sudentId") String sudentId) {
-		return studentService.inscriptionCours(sudentId, groupeCoursId);
-       
-    }
+//	@PutMapping(value="/student/inscriptionCours/{sudentId}")
+//    public Student updateStudent(@PathVariable("sudentId") String sudentId) {
+//		return studentService.updateStudent(sudentId);
+//       
+//    }
 	
 	@GetMapping(value="/student/allStudents")
     public List<Student> getStudents() {

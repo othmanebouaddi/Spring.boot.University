@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -33,29 +35,16 @@ public class Session {
 	@ApiModelProperty(notes = "The name of Session")
 	private String name;
 	
-	
-	//Relation between Session and GoupeCours
-	@OneToOne(fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "session_id", nullable = true)
-	@JsonIgnore
-    private GroupeCours groupeCours;
-	
-	
-//	@ManyToMany(fetch = FetchType.LAZY,
-//		cascade = {
-//				CascadeType.PERSIST,
-//				CascadeType.MERGE
-//		})
-//	@JoinTable(name = "groupecours_session",
-//		joinColumns = { @JoinColumn(name = "GroupeCoursInitials") },
-//		inverseJoinColumns = { @JoinColumn(name = "session_name") })
-//	@JsonIgnore
-//	private Set<GroupeCours> groupeCours = new HashSet<>();
-
+	@Enumerated(EnumType.ORDINAL)
+	private Season season;
 	
 	
 	
-	
+	//Relation between GroupCours and Session
+	@OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "session")
+	private GroupeCours groupeCours;
 	
 
 	//Constructor
@@ -94,6 +83,13 @@ public class Session {
 		this.id = id;
 	}
 
+	public Season getSeason() {
+		return season;
+	}
+
+	public void setSeason(Season season) {
+		this.season = season;
+	}
 	
 	
 

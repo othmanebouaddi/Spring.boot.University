@@ -10,17 +10,15 @@ public abstract class Person {
 	@Id
 	private Integer Personid;
 	private String name;
-	private String sex;
 	private String address;
 	
 	
 	
 	
 	//Constructors
-	public Person(Integer personid, String name, String sex, String address) {
+	public Person(Integer personid, String name, String address) {
 		Personid = personid;
 		this.name = name;
-		this.sex = sex;
 		this.address = address;
 	}
 	public Person() {
@@ -38,12 +36,6 @@ public abstract class Person {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
 	}
 	public String getAddress() {
 		return address;

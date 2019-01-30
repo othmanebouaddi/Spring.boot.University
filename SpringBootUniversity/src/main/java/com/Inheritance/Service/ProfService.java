@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.Inheritance.entities.GroupeCours;
 import com.Inheritance.entities.Prof;
 import com.Inheritance.entities.Program;
+import com.Inheritance.entities.Sex;
 import com.Inheritance.exception.ResourceNotFoundException;
 import com.Inheritance.repository.GroupeCoursRepository;
 import com.Inheritance.repository.ProfRepository;
@@ -28,11 +29,15 @@ public class ProfService {
 		return profRepository.findAll();
 	}
 
-	public Prof createProf(@Valid Prof prof, Integer groupeCoursId) {
+	public Prof createProf(@Valid Prof prof, Integer groupeCoursId, String sex) {
 		Set<GroupeCours> groupeCoursList = groupeCoursRepository.findAllByProfMatricul(prof.getMatricul());
 		return groupeCoursRepository.findById(groupeCoursId).map(groupeCours -> {
 			groupeCoursList.add(groupeCours);
 			prof.setGroupeCours(groupeCoursList);
+			if(sex.equalsIgnoreCase("M"))
+				prof.setSex(Sex.M);
+			else if(sex.equalsIgnoreCase("F"))
+				prof.setSex(Sex.F);
 			return profRepository.save(prof);
 		}).orElseThrow(() -> new ResourceNotFoundException("Prof", "id", groupeCoursId));		
 	}

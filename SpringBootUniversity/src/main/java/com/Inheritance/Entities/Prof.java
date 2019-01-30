@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -18,7 +20,7 @@ import io.swagger.annotations.ApiModelProperty;
 @Table(name="profs")
 public class Prof extends Person implements Serializable{
 
-	@Column(name="matricul")
+	@Column(name="matriculProf")
 	@ApiModelProperty(notes = "The Id of the Prof")
 	private String matricul;
 	
@@ -31,6 +33,9 @@ public class Prof extends Person implements Serializable{
 	private String salary;
 	
 	
+	@Enumerated(EnumType.ORDINAL)
+	private Sex sex;
+	
 	//Relation bettwenn Prof and GroupCours
 	@OneToMany( fetch = FetchType.LAZY, mappedBy = "prof", cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -40,9 +45,9 @@ public class Prof extends Person implements Serializable{
 
 
 	//Constructors
-	public Prof(Integer personid, String name, String sex, String address, String matricul,
+	public Prof(Integer personid, String name, String address, String matricul,
 			String occupation, String salary) {
-		super(personid, name, sex, address);
+		super(personid, name, address);
 		this.matricul = matricul;
 		this.occupation = occupation;
 		this.salary = salary;
@@ -84,7 +89,13 @@ public class Prof extends Person implements Serializable{
 		this.groupeCours = groupeCours;
 	}
 	
-	
+	public Sex getSex() {
+		return sex;
+	}
+
+	public void setSex(Sex sex) {
+		this.sex = sex;
+	}
 	
 	
 

@@ -1,12 +1,14 @@
 package com.Inheritance.entities;
 
-import java.io.Serializable;
+import java.io.Serializable; 
 import java.util.HashSet;  
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column; 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -24,7 +26,7 @@ public class Student extends Person implements Serializable{
 	
 	
 
-	@Column(name="code")
+	@Column(name="CodeStudent")
 	@ApiModelProperty(notes = "The Student code")
 	private String code;
 	
@@ -34,10 +36,10 @@ public class Student extends Person implements Serializable{
 	
 	
 	//Relation between student and program
-	@ManyToOne
-	@JoinColumn(name = "Program_initials", referencedColumnName = "Program_initials")
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "student", cascade = CascadeType.ALL)
 	@JsonIgnore
-	private Program program;
+    private Set<InscriptionProgram> inscriptionPrograms = new HashSet<InscriptionProgram>();
+	
 	
 	
 	//Relation between Student and GroupeCours
@@ -45,14 +47,15 @@ public class Student extends Person implements Serializable{
 	@JsonIgnore
     private Set<GroupeCours> groupeCours;
 
-	
+	@Enumerated(EnumType.STRING)
+	private Sex sex;
 	
 	
 
 	//Constructors
-	public Student(Integer personid, String name, String sex, String address, String code,
+	public Student(Integer personid, String name, String address, String code,
 			Boolean stillStudying) {
-		super(personid, name, sex, address);
+		super(personid, name, address);
 		this.code = code;
 		this.stillStudying = stillStudying;
 	}
@@ -70,6 +73,14 @@ public class Student extends Person implements Serializable{
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
+	public Sex getSex() {
+		return sex;
+	}
+
+	public void setSex(Sex sex) {
+		this.sex = sex;
+	}
 
 	public Boolean getStillStudying() {
 		return stillStudying;
@@ -77,11 +88,6 @@ public class Student extends Person implements Serializable{
 
 	public void setStillStudying(Boolean stillStudying) {
 		this.stillStudying = stillStudying;
-	}
-	
-	
-	public Program getProgram() {
-		return program;
 	}
 
 	public Set<GroupeCours> getGroupeCours() {
@@ -92,8 +98,12 @@ public class Student extends Person implements Serializable{
 		this.groupeCours = groupeCours;
 	}
 
-	public void setProgram(Program program) {
-		this.program = program;
+	public void setinscriptionPrograms(Set<InscriptionProgram> inscriptionPrograms) {
+		this.inscriptionPrograms = inscriptionPrograms;
+	}
+	
+	public Set<InscriptionProgram> getInscriptionPrograms() {
+		return inscriptionPrograms;
 	}
 	
 	

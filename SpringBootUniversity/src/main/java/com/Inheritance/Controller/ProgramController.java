@@ -26,9 +26,9 @@ public class ProgramController {
 	@Autowired
 	private ProgramRepository programRepository;
 	
-	@PostMapping(value="/program/createProgram")
-	public Program createProgram( @Valid @RequestBody Program program) {;
-		return programService.createProgram(program);
+	@PostMapping(value="/program/createProgram/{cycle}")
+	public Program createProgram(@PathVariable("cycle") Integer cycle,  @Valid @RequestBody Program program) {;
+		return programService.createProgram(program, cycle);
      
 	}
 	

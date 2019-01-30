@@ -39,7 +39,6 @@ public class Cours implements Serializable{
 	
 	//Relation bettwenn Cours and GroupCours
 	@OneToMany( fetch = FetchType.LAZY, mappedBy = "cours", cascade = CascadeType.ALL)
-	@JsonIgnore
     private Set<GroupeCours> groupeCours;
 	
 	
