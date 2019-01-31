@@ -8,7 +8,7 @@ import com.Inheritance.entities.Student;
 
 public interface StudentRepository extends JpaRepository<Student, String> {
 	
-	public Optional<Student> findByCode(String code);
+	public Optional<Student> findByCodeStudent(String code);
 	
 
 }

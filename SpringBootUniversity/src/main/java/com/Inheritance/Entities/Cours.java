@@ -1,6 +1,6 @@
 package com.Inheritance.entities;
 
-import java.io.Serializable;
+import java.io.Serializable; 
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,11 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -24,7 +21,7 @@ public class Cours implements Serializable{
 	@Id
 	@Column(name="CoursInitials")
 	@ApiModelProperty(notes = "The initials of Cours")
-	private String initials;
+	private String coursInitials;
 	
 	
 	
@@ -43,20 +40,15 @@ public class Cours implements Serializable{
 	
 	
 	//Relation bettween Cours and Program
-	@ManyToMany(fetch = FetchType.LAZY,
-			cascade = {
-					CascadeType.PERSIST,
-					CascadeType.MERGE
-			},
-			mappedBy = "cours")
-	@JsonIgnore
-	private Set<Program> program = new HashSet<>();
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "cours", cascade = CascadeType.ALL)
+    private Set<CoursProgram> coursPrograms = new HashSet<CoursProgram>();
+
 
 
 	//Constructors
-	public Cours(String initials, String name, Integer credits) {
+	public Cours(String coursInitials, String name, Integer credits) {
 		super();
-		this.initials = initials;
+		this.coursInitials = coursInitials;
 		this.name = name;
 		this.credits = credits;
 	}
@@ -64,17 +56,15 @@ public class Cours implements Serializable{
 	
 	public Cours() {
 		super();
-	}
-
-
+	
 
 
 	//Setters and Getters
-	public String getInitials() {
-		return initials;
+	public String getCoursInitials() {
+		return coursInitials;
 	}
-	public void setInitials(String initials) {
-		this.initials = initials;
+	public void setCoursInitials(String coursInitials) {
+		this.coursInitials = coursInitials;
 	}
 	public String getName() {
 		return name;
@@ -95,14 +85,15 @@ public class Cours implements Serializable{
 		this.groupeCours = groupeCours;
 	}
 	
-	public Set<Program> getProgram() {
-		return program;
-	}
-	public void setProgram(Set<Program> program) {
-		this.program = program;
-	}
 	
-	
+	public Set<CoursProgram> getCoursPrograms() {
+		return coursPrograms;
+	}
+
+
+	public void setCoursPrograms(Set<CoursProgram> coursPrograms) {
+		this.coursPrograms = coursPrograms;
+	}
 	
 	
 	

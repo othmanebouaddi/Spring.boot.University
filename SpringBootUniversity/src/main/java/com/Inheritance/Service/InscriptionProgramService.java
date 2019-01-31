@@ -1,5 +1,7 @@
 package com.Inheritance.service;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +33,15 @@ public class InscriptionProgramService {
 	private ProgramRepository programRepository;
 
 	public InscriptionProgram inscriptionProgram(String codeStudent, Integer program_initials, @Valid InscriptionProgram inscriptionProgram) {
-		Student student = studentRepository.findByCode(codeStudent).orElseThrow(() -> new ResourceNotFoundException("Student", "code", codeStudent));
+		Student student = studentRepository.findByCodeStudent(codeStudent).orElseThrow(() -> new ResourceNotFoundException("Student", "code", codeStudent));
 		inscriptionProgram.setStudent(student);
 		Program program = programRepository.findById(program_initials).orElseThrow(() -> new ResourceNotFoundException("Program", "program_initials", program_initials));
 		inscriptionProgram.setProgram(program);
 		return inscriptionProgramRepository.save(inscriptionProgram);
+	}
+
+	public List<InscriptionProgram> getAllStudentProgram() {
+		return inscriptionProgramRepository.findAll();
 	}
 	
 	

@@ -33,11 +33,12 @@ public class StudentController {
        
     }
 	
-//	@PutMapping(value="/student/inscriptionCours/{sudentId}")
-//    public Student updateStudent(@PathVariable("sudentId") String sudentId) {
-//		return studentService.updateStudent(sudentId);
+//	@PutMapping(value="/student/inscriptionCours/sudentId/{address}/{stillStudying}")
+//    public Student updateStudent(@PathVariable("sudentId") String sudentId, @PathVariable("address") String address, @PathVariable("stillStudying") Boolean stillStudying) {
+//		return studentService.updateStudent(sudentId, address, stillStudying);
 //       
 //    }
+	
 	
 	@GetMapping(value="/student/allStudents")
     public List<Student> getStudents() {

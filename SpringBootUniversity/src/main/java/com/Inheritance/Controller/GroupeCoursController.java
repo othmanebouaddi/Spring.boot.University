@@ -24,9 +24,9 @@ public class GroupeCoursController {
 	private GroupeCoursService groupeCoursService;
 	
 	
-	@PostMapping(value="/groupeCours/createGroupeCours/{coursId}/{sessionId}")
-    public GroupeCours createGroupeCours(@PathVariable("coursId") String coursId, @PathVariable("sessionId") Integer sessionId, @Valid @RequestBody GroupeCours groupeCours) {
-		return groupeCoursService.createGroupeCours(groupeCours, coursId, sessionId);
+	@PostMapping(value="/groupeCours/createGroupeCours/{season}")
+    public GroupeCours createGroupeCours(@Valid @RequestBody GroupeCours groupeCours, @PathVariable("season") String season) {
+		return groupeCoursService.createGroupeCours(groupeCours ,season);
        
     }
 	

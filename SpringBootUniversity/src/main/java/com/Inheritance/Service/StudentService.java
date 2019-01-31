@@ -31,14 +31,6 @@ public class StudentService {
 
 	
 	public Student createStudent(@Valid Student student, String sex){
-//		return programRepository.findById(Program_initials).map(program -> {
-//			//student.setProgram(program);
-//			if(sex.equalsIgnoreCase("M"))
-//				student.setSex(Sex.M);
-//			else if(sex.equalsIgnoreCase("F"))
-//				student.setSex(Sex.F);
-//			return studentRepository.save(student);
-//		}).orElseThrow(() -> new ResourceNotFoundException("Student", "id", Program_initials));
 		if(sex.equalsIgnoreCase("M"))
 			student.setSex(Sex.M);
 		else if(sex.equalsIgnoreCase("F"))

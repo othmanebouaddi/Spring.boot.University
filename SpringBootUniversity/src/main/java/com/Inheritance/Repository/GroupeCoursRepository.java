@@ -10,7 +10,7 @@ import com.Inheritance.entities.GroupeCours;
 public interface GroupeCoursRepository extends JpaRepository<GroupeCours, Integer>{
 	
 	public Optional<GroupeCours> findById(Integer groupeCoursId);
-	public Set<GroupeCours> findAllByProfMatricul(String matricul);
-	public Set<GroupeCours> findByStudentCode(String code);
+//	public Set<GroupeCours> findAllByMatricul(String matricul);
+//	public Set<GroupeCours> findByStudentCode(String code);
 
 }

@@ -25,13 +25,15 @@ public class CoursService {
 	@Autowired
 	private ProgramRepository programRepository;
 
-	public Cours createCours(@Valid Cours cours, Integer Program_initials) {
-		Set<Program> programList = programRepository.findAllByCoursInitials(cours.getInitials());
-		return programRepository.findById(Program_initials).map(program -> {
-			programList.add(program);
-			cours.setProgram(programList);
-			return coursRepository.save(cours);	
-		}).orElseThrow(() -> new ResourceNotFoundException("Cours", "id", Program_initials));
+	public Cours createCours(@Valid Cours cours) {
+//		Set<Program> programList = programRepository.findAllByCoursInitials(cours.getInitials());
+//		return programRepository.findById(Program_initials).map(program -> {
+//			programList.add(program);
+//			cours.setProgram(programList);
+//			return coursRepository.save(cours);	
+//		}).orElseThrow(() -> new ResourceNotFoundException("Cours", "id", Program_initials));
+		return coursRepository.save(cours);
+		
 	}
 
 	public List<Cours> getAllCours() {

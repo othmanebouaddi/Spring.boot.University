@@ -10,6 +10,6 @@ import com.Inheritance.entities.Program;
 public interface ProgramRepository extends JpaRepository<Program, Integer>{
 	
 	public Optional<Program> findById(Integer Program_initials);
-	public Set<Program> findAllByCoursInitials(String CoursInitials);
+//	public Set<Program> findAllByCoursInitials(String CoursInitials);
 
 }

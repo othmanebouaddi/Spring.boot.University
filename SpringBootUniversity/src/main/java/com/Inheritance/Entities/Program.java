@@ -1,6 +1,6 @@
 package com.Inheritance.entities;
 
-import java.util.HashSet;
+import java.util.HashSet; 
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,9 +10,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,7 +25,7 @@ public class Program {
 	@Id
 	@Column(name="Program_initials")
 	@ApiModelProperty(notes = "The initials of the  Program")
-	private Integer Program_initials;
+	private Integer program_initials;
 	
 	@Column(name="Name")
 	@ApiModelProperty(notes = "The name of Program")
@@ -40,18 +37,12 @@ public class Program {
 	
 
 	//Relation between Program and Cours
-	@ManyToMany(fetch = FetchType.LAZY,
-			cascade = {
-					CascadeType.PERSIST,
-					CascadeType.MERGE
-			})
-	@JoinTable(name = "program_cours",
-		joinColumns = { @JoinColumn(name = "CoursInitials") },
-		inverseJoinColumns = { @JoinColumn(name = "Program_initials") })
-	private Set<Cours> cours = new HashSet<>();
+	@OneToMany( fetch = FetchType.LAZY, mappedBy = "program", cascade = CascadeType.ALL)
+	@JsonIgnore
+    private Set<CoursProgram> coursPrograms = new HashSet<CoursProgram>();
 	
 	
-	
+
 	//Relation between Program and Student
 	@OneToMany( fetch = FetchType.LAZY, mappedBy = "program", cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -64,9 +55,9 @@ public class Program {
 	public Program() {
 	}
 	
-	public Program(String name, Integer Program_initials) {
+	public Program(String name, Integer program_initials) {
 		this.name = name;
-		this.Program_initials = Program_initials;
+		this.program_initials = program_initials;
 	}
 	
 	
@@ -80,21 +71,7 @@ public class Program {
 		this.name = name;
 	}
 
-	public Integer getInitials() {
-		return Program_initials;
-	}
-
-	public void setInitials(Integer Program_initials) {
-		this.Program_initials = Program_initials;
-	}
 	
-	public Set<Cours> getCours() {
-		return cours;
-	}
-
-	public void setCours(Set<Cours> cours) {
-		this.cours = cours;
-	}
 	public Set<InscriptionProgram> getInscriptionPrograms() {
 		return inscriptionPrograms;
 	}
@@ -112,11 +89,19 @@ public class Program {
 	}
 
 	public Integer getProgram_initials() {
-		return Program_initials;
+		return program_initials;
 	}
 
 	public void setProgram_initials(Integer program_initials) {
-		Program_initials = program_initials;
+		this.program_initials = program_initials;
+	}
+	
+	public Set<CoursProgram> getCoursPrograms() {
+		return coursPrograms;
+	}
+
+	public void setCoursPrograms(Set<CoursProgram> coursPrograms) {
+		this.coursPrograms = coursPrograms;
 	}
 
 }

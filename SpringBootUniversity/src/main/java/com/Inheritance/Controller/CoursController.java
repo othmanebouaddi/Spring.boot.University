@@ -24,9 +24,9 @@ public class CoursController {
 	private CoursService coursService;
 	
 	
-	@PostMapping(value="/cours/createCours/{programId}")
-    public Cours createCours(@PathVariable("programId") Integer programId, @Valid @RequestBody Cours cours) {
-		return coursService.createCours(cours, programId);
+	@PostMapping(value="/cours/createCours")
+    public Cours createCours(@Valid @RequestBody Cours cours) {
+		return coursService.createCours(cours);
        
     }
 	

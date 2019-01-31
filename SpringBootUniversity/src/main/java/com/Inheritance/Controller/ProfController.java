@@ -23,9 +23,9 @@ public class ProfController {
 	@Autowired
 	private ProfService profService;
 	
-	@PostMapping(value="/prof/createProf/{groupeCoursId}/{sex}")
-    public Prof createProf(@PathVariable("sex") String sex, @PathVariable("groupeCoursId") Integer groupeCoursId, @Valid @RequestBody Prof prof) {
-		return profService.createProf(prof, groupeCoursId, sex);
+	@PostMapping(value="/prof/createProf/{sex}")
+    public Prof createProf(@PathVariable("sex") String sex, @Valid @RequestBody Prof prof) {
+		return profService.createProf(prof, sex);
        
     }
 	

@@ -24,32 +24,25 @@ public class Prof extends Person implements Serializable{
 	@ApiModelProperty(notes = "The Id of the Prof")
 	private String matricul;
 	
-	@Column(name="occupation")
-	@ApiModelProperty(notes = "The occupation of the Prof")
-	private String occupation;
-	
 	@Column(name="Salary")
 	@ApiModelProperty(notes = "The salary of the Prof")
-	private String salary;
+	private Integer salary;
 	
 	
 	@Enumerated(EnumType.ORDINAL)
 	private Sex sex;
 	
-	//Relation bettwenn Prof and GroupCours
+	//Relation between Prof and GroupCours
 	@OneToMany( fetch = FetchType.LAZY, mappedBy = "prof", cascade = CascadeType.ALL)
 	@JsonIgnore
-    private Set<GroupeCours> groupeCours;
+    private Set<Enseignement> enseignements;
 	
-	
-
 
 	//Constructors
 	public Prof(Integer personid, String name, String address, String matricul,
-			String occupation, String salary) {
+			Integer salary) {
 		super(personid, name, address);
 		this.matricul = matricul;
-		this.occupation = occupation;
 		this.salary = salary;
 	}
 	
@@ -58,18 +51,10 @@ public class Prof extends Person implements Serializable{
 	}
 
 	//Getters and Setters
-	public String getOccupation() {
-		return occupation;
-	}
-	
-
-	public void setOccupation(String occupation) {
-		this.occupation = occupation;
-	}
-	public String getSalary() {
+	public Integer getSalary() {
 		return salary;
 	}
-	public void setSalary(String salary) {
+	public void setSalary(Integer salary) {
 		this.salary = salary;
 	}
 
@@ -81,20 +66,20 @@ public class Prof extends Person implements Serializable{
 		this.matricul = matricul;
 	}
 	
-	public Set<GroupeCours> getGroupeCours() {
-		return groupeCours;
-	}
-
-	public void setGroupeCours(Set<GroupeCours> groupeCours) {
-		this.groupeCours = groupeCours;
-	}
-	
 	public Sex getSex() {
 		return sex;
 	}
 
 	public void setSex(Sex sex) {
 		this.sex = sex;
+	}
+	
+	public Set<Enseignement> getEnseignements() {
+		return enseignements;
+	}
+
+	public void setEnseignements(Set<Enseignement> enseignements) {
+		this.enseignements = enseignements;
 	}
 	
 	

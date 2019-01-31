@@ -25,20 +25,17 @@ public class ProfService {
 	@Autowired
 	private GroupeCoursRepository groupeCoursRepository;
 
+	
 	public List<Prof> getProfs() {
 		return profRepository.findAll();
 	}
 
-	public Prof createProf(@Valid Prof prof, Integer groupeCoursId, String sex) {
-		Set<GroupeCours> groupeCoursList = groupeCoursRepository.findAllByProfMatricul(prof.getMatricul());
-		return groupeCoursRepository.findById(groupeCoursId).map(groupeCours -> {
-			groupeCoursList.add(groupeCours);
-			prof.setGroupeCours(groupeCoursList);
-			if(sex.equalsIgnoreCase("M"))
-				prof.setSex(Sex.M);
-			else if(sex.equalsIgnoreCase("F"))
-				prof.setSex(Sex.F);
-			return profRepository.save(prof);
-		}).orElseThrow(() -> new ResourceNotFoundException("Prof", "id", groupeCoursId));		
+	
+	public Prof createProf(@Valid Prof prof, String sex) {
+		if(sex.equalsIgnoreCase("M"))
+			prof.setSex(Sex.M);
+		else if(sex.equalsIgnoreCase("F"))
+			prof.setSex(Sex.F);
+		return profRepository.save(prof);
 	}
 }
