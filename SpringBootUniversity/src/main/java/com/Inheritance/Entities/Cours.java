@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
@@ -21,7 +23,7 @@ public class Cours implements Serializable{
 	@Id
 	@Column(name="CoursInitials")
 	@ApiModelProperty(notes = "The initials of Cours")
-	private String coursInitials;
+	private String initials;
 	
 	
 	
@@ -36,19 +38,21 @@ public class Cours implements Serializable{
 	
 	//Relation bettwenn Cours and GroupCours
 	@OneToMany( fetch = FetchType.LAZY, mappedBy = "cours", cascade = CascadeType.ALL)
+	@JsonIgnore
     private Set<GroupeCours> groupeCours;
 	
 	
 	//Relation bettween Cours and Program
 	@OneToMany( fetch = FetchType.LAZY, mappedBy = "cours", cascade = CascadeType.ALL)
+	@JsonIgnore
     private Set<CoursProgram> coursPrograms = new HashSet<CoursProgram>();
 
 
 
 	//Constructors
-	public Cours(String coursInitials, String name, Integer credits) {
+	public Cours(String initials, String name, Integer credits) {
 		super();
-		this.coursInitials = coursInitials;
+		this.initials = initials;
 		this.name = name;
 		this.credits = credits;
 	}
@@ -56,15 +60,16 @@ public class Cours implements Serializable{
 	
 	public Cours() {
 		super();
+	}
 	
 
 
 	//Setters and Getters
-	public String getCoursInitials() {
-		return coursInitials;
+	public String getInitials() {
+		return initials;
 	}
-	public void setCoursInitials(String coursInitials) {
-		this.coursInitials = coursInitials;
+	public void setInitials(String initials) {
+		this.initials = initials;
 	}
 	public String getName() {
 		return name;

@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
-@Table(name="students")
+@Table(name="student")
 public class Student extends Person implements Serializable{
 	
 	

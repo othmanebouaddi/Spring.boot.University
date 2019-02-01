@@ -1,6 +1,6 @@
 package com.Inheritance.controller;
 
-import java.util.List;
+import java.util.List; 
 
 import javax.validation.Valid;
 
@@ -14,11 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Inheritance.entities.InscriptionGroupeCours;
-import com.Inheritance.entities.LettreNote;
-import com.Inheritance.entities.Program;
-import com.Inheritance.repository.ProgramRepository;
 import com.Inheritance.service.InscriptionGroupeCoursService;
-import com.Inheritance.service.ProgramService;
 
 @RestController
 @RequestMapping("/api")
@@ -28,12 +24,10 @@ public class InscriptionGroupeCoursController {
 	@Autowired
 	private InscriptionGroupeCoursService inscriptionGroupeCoursService;
 	
-//	@Autowired
-//	private ProgramRepository programRepository;
 	
-	@PostMapping(value="/inscriptionGroupeCours/{studentId}/{groupeCoursId}")
-	public InscriptionGroupeCours inscriptionGroupeCours(@PathVariable("studentId") String studentId, @PathVariable("groupeCoursId") Integer groupeCoursId,  @Valid @RequestBody InscriptionGroupeCours inscriptionGroupeCours) {;
-		return inscriptionGroupeCoursService.inscriptionGroupeCours(inscriptionGroupeCours, studentId, groupeCoursId);
+	@PostMapping(value="/inscriptionGroupeCours/{codeStudent}/{CoursInitial}/{groupeCoursInitial}")
+	public InscriptionGroupeCours inscriptionGroupeCours(@PathVariable("codeStudent") String codeStudent, @PathVariable("CoursInitial") String CoursInitial, @PathVariable("groupeCoursInitial") String groupeCoursInitial,  @Valid @RequestBody InscriptionGroupeCours inscriptionGroupeCours) {;
+		return inscriptionGroupeCoursService.inscriptionGroupeCours(inscriptionGroupeCours, codeStudent, groupeCoursInitial, CoursInitial);
      
 	}
 	
@@ -43,10 +37,5 @@ public class InscriptionGroupeCoursController {
      
 	}
 	
-	@PutMapping(value="/inscriptionGroupeCours/updateInscriptionGroupeCours/{lettreNote}")
-	public InscriptionGroupeCours updateinscriptionGroupeCours(@PathVariable("lettreNote") String lettreNote, @Valid @RequestBody InscriptionGroupeCours inscriptionGroupeCours) {;
-		return inscriptionGroupeCoursService.updateinscriptionGroupeCours(inscriptionGroupeCours, lettreNote);
-     
-	}
 
 }

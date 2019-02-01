@@ -33,9 +33,9 @@ public class GroupeCours implements Serializable{
 	@ApiModelProperty(notes = "The Id of GroupeCours")
 	private Integer groupeCoursId;
 	
-	@Column(name="GroupeCoursInitials")
+	@Column(name="Initials")
 	@ApiModelProperty(notes = "The initials of GroupeCours")
-	private String groupeCoursInitials;
+	private String initials;
 	
 	@Column(name="Year")
 	@ApiModelProperty(notes = "The year of GroupeCours")
@@ -48,7 +48,7 @@ public class GroupeCours implements Serializable{
 	
 	//Relation between GroupCours and Course
 	@ManyToOne
-	@JoinColumn(name = "coursInitials", referencedColumnName = "coursInitials")
+	@JoinColumn(name = "CoursInitials", referencedColumnName = "CoursInitials")
 	@JsonIgnore
 	private Cours cours;
 	
@@ -66,15 +66,15 @@ public class GroupeCours implements Serializable{
 	
 
 	//Constructors
-	public GroupeCours(Integer groupeCoursId, String groupeCoursInitials) {
+	public GroupeCours(Integer groupeCoursId, String initials, Integer year) {
 		super();
+		this.year = year; 
 		this.groupeCoursId = groupeCoursId;
-		this.groupeCoursInitials = groupeCoursInitials;
+		this.initials = initials;
 	}
 	
 	public GroupeCours() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	//Setters and Getters
@@ -86,10 +86,10 @@ public class GroupeCours implements Serializable{
 	}
 	
 	public String getInitials() {
-		return groupeCoursInitials;
+		return initials;
 	}
-	public void setInitials(String groupeCoursInitials) {
-		this.groupeCoursInitials = groupeCoursInitials;
+	public void setInitials(String initials) {
+		this.initials = initials;
 	}
 	public Cours getCours() {
 		return cours;

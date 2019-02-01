@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
  
 @Entity
-@Table(name="profs")
+@Table(name="prof")
 public class Prof extends Person implements Serializable{
 
 	@Column(name="matriculProf")
@@ -29,7 +29,7 @@ public class Prof extends Person implements Serializable{
 	private Integer salary;
 	
 	
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	private Sex sex;
 	
 	//Relation between Prof and GroupCours

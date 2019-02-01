@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
-@Table(name="enseignements")
+@Table(name="enseignement")
 public class Enseignement {
 	
 	
@@ -52,6 +52,10 @@ public class Enseignement {
 	public GroupeCours getGroupeCours() {
 		return groupeCours;
 	}
+	
+	public void setGroupeCours(GroupeCours groupeCours) {
+		this.groupeCours = groupeCours;
+	}
 
 	public Double getNombreHeurs() {
 		return nombreHeurs;
@@ -61,9 +65,7 @@ public class Enseignement {
 		this.nombreHeurs = nombreHeurs;
 	}
 
-	public void setGroupeCours(GroupeCours groupeCours) {
-		this.groupeCours = groupeCours;
-	}
+	
 	
 	
 

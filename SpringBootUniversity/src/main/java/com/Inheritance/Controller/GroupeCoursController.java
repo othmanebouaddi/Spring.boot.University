@@ -1,6 +1,6 @@
 package com.Inheritance.controller;
 
-import java.util.List;
+import java.util.List;  
 
 import javax.validation.Valid;
 
@@ -24,9 +24,9 @@ public class GroupeCoursController {
 	private GroupeCoursService groupeCoursService;
 	
 	
-	@PostMapping(value="/groupeCours/createGroupeCours/{season}")
-    public GroupeCours createGroupeCours(@Valid @RequestBody GroupeCours groupeCours, @PathVariable("season") String season) {
-		return groupeCoursService.createGroupeCours(groupeCours ,season);
+	@PostMapping(value="/groupeCours/createGroupeCours/{coursInitial}")
+    public GroupeCours createGroupeCours(@Valid @RequestBody GroupeCours groupeCours, @PathVariable("coursInitial") String coursInitial) {
+		return groupeCoursService.createGroupeCours(groupeCours, coursInitial);
        
     }
 	

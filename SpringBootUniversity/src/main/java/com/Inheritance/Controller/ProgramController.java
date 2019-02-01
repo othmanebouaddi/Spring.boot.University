@@ -1,19 +1,17 @@
 package com.Inheritance.controller;
 
-import java.util.List;
+import java.util.List; 
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Inheritance.entities.Program;
-import com.Inheritance.repository.ProgramRepository;
 import com.Inheritance.service.ProgramService;
 
 @RestController
@@ -23,12 +21,10 @@ public class ProgramController {
 	@Autowired
 	private ProgramService programService;
 	
-	@Autowired
-	private ProgramRepository programRepository;
 	
-	@PostMapping(value="/program/createProgram/{cycle}")
-	public Program createProgram(@PathVariable("cycle") Integer cycle,  @Valid @RequestBody Program program) {;
-		return programService.createProgram(program, cycle);
+	@PostMapping(value="/program/createProgram")
+	public Program createProgram( @Valid @RequestBody Program program) {;
+		return programService.createProgram(program);
      
 	}
 	

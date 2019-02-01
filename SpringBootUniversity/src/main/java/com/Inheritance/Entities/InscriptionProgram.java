@@ -14,10 +14,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
+@Table(name="InscriptionProgram")
 public class InscriptionProgram implements Serializable{
 	
 	private Integer id;
@@ -45,6 +49,7 @@ public class InscriptionProgram implements Serializable{
     
 	@ManyToOne
 	@JoinColumn(name = "fk_student", insertable = true, updatable = true)
+	@JsonIgnore
 	public Student getStudent() {
 		return student;
 	}
@@ -55,6 +60,7 @@ public class InscriptionProgram implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "fk_program", insertable = true, updatable = true)	
+	@JsonIgnore
 	public Program getProgram() {
 		return program;
 	}

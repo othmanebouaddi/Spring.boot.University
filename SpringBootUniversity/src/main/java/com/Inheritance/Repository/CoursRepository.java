@@ -9,7 +9,7 @@ import com.Inheritance.entities.Cours;
 
 public interface CoursRepository extends JpaRepository<Cours, String>{
 	
-	public Optional<Cours> findById(String initials);
+	public Optional<Cours> findByInitials(String initials);
 	
 	
 

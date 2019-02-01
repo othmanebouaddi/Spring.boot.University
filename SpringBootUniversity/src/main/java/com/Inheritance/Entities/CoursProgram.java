@@ -20,16 +20,19 @@ public class CoursProgram {
     private Cours cours;
     private Program program;
     
-    @Column(name="Optional")
-	@ApiModelProperty(notes = "Optional course")
-	private Integer optional;
     
-	@Id
+    @Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "program_cours_id")
     public Integer getId() {
         return id;
     }
+    
+    @Column(name="Optional")
+	@ApiModelProperty(notes = "Optional course")
+	private Boolean optional;
+    
+	
  
     public void setId(Integer id) {
         this.id = id;
@@ -55,11 +58,11 @@ public class CoursProgram {
 		this.program = program;
 	}
 
-	public Integer getOptional() {
+	public Boolean getOptional() {
 		return optional;
 	}
 
-	public void setOptional(Integer optional) {
+	public void setOptional(Boolean optional) {
 		this.optional = optional;
 	}
 	
