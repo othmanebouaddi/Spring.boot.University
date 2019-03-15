@@ -32,5 +32,10 @@ public class EnseignementController {
 	public List<Enseignement> getAllEnseignement(){
 		return enseignementService.getAllEnseignement();
 	}
+	
+	@GetMapping(value="/enseignement/allEnseignementByProf/{matricul}")
+	public List<Enseignement> getAllEnseignementByProf(@PathVariable("matricul") String matricul){
+		return enseignementService.getAllEnseignementByProf(matricul);
+	}
 
 }

@@ -1,5 +1,6 @@
 package com.Inheritance.service;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.Inheritance.entities.GroupeCours;
 import com.Inheritance.entities.InscriptionProgram;
 import com.Inheritance.entities.Prof;
 import com.Inheritance.entities.Program;
@@ -42,6 +44,21 @@ public class InscriptionProgramService {
 
 	public List<InscriptionProgram> getAllStudentProgram() {
 		return inscriptionProgramRepository.findAll();
+	}
+
+	public List<InscriptionProgram> allInscriptionProgramByStudent(String codeStudent) {
+		List<InscriptionProgram>  inscriptionProgram = inscriptionProgramRepository.findAll();
+		 
+		
+		Iterator<InscriptionProgram> iterator = inscriptionProgram.iterator();
+		while(iterator.hasNext()){
+			InscriptionProgram i =  iterator.next();
+			if(!(i.getStudent().getCodeStudent().equals(codeStudent))) {	
+				iterator.remove();
+			}
+		}
+		
+		 return inscriptionProgram;
 	}
 	
 	

@@ -37,5 +37,11 @@ public class InscriptionGroupeCoursController {
      
 	}
 	
+	@GetMapping(value="/inscriptionGroupeCours/allInscriptionGroupeCoursByStudents/{codeStudent}")
+	public List<InscriptionGroupeCours> allInscriptionGroupeCoursByStudents(@PathVariable("codeStudent") String codeStudent) {;
+		return inscriptionGroupeCoursService.getAllInscriptionGroupeCoursByStudents(codeStudent);
+     
+	}
+	
 
 }

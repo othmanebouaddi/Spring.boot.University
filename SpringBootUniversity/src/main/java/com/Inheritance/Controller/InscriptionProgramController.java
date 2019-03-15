@@ -40,6 +40,12 @@ public class InscriptionProgramController {
        
     }
 	
+	@GetMapping(value="/studentProgram/allInscriptionProgramByStudent/{codeStudent}")
+    public List<InscriptionProgram> allInscriptionProgramByStudent(@PathVariable("codeStudent") String codeStudent) {
+		return inscriptionProgramService.allInscriptionProgramByStudent(codeStudent);
+       
+    }
+	
 	
 	
 

@@ -35,5 +35,11 @@ public class GroupeCoursController {
 		return groupeCoursService.getAllGroupeCours();
        
     }
+	
+	@GetMapping(value="/groupeCours/allGroupeCoursBycours/{initials}")
+    public List<GroupeCours> getAllGroupeCoursBycours(@PathVariable("initials") String initials) {
+		return groupeCoursService.getAllGroupeCoursBycours(initials);
+       
+    }
 
 }

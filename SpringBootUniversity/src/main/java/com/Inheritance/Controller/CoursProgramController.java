@@ -31,8 +31,13 @@ public class CoursProgramController {
     }
 	
 	@GetMapping(value="/coursProgram/allCoursProgram")
-    public List<CoursProgram> getAllCoursProgram() {
-		return coursProgramService.getAllCoursProgram();
+    public List<CoursProgram> getAllCoursPrograms() {
+		return coursProgramService.getAllCoursPrograms();
+       
+    }
+	@GetMapping(value="/coursProgram/allCoursProgram/{fk_program}")
+    public List<CoursProgram> getAllCoursProgram(@PathVariable("fk_program") Integer fk_program) {
+		return coursProgramService.getAllCoursProgram(fk_program);
        
     }
 

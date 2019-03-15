@@ -1,5 +1,6 @@
 package com.Inheritance.service;
 
+import java.util.Iterator;
 import java.util.List; 
 
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.Inheritance.entities.GroupeCours;
 import com.Inheritance.entities.InscriptionGroupeCours;
+import com.Inheritance.entities.InscriptionProgram;
 import com.Inheritance.entities.Student;
 import com.Inheritance.exception.ResourceNotFoundException;
 import com.Inheritance.repository.GroupeCoursRepository;
@@ -49,6 +51,21 @@ public class InscriptionGroupeCoursService {
 		}
 		
 		return inscriptionGroupeCoursRepository.save(inscriptionGroupeCours);
+	}
+
+	public List<InscriptionGroupeCours> getAllInscriptionGroupeCoursByStudents(String codeStudent) {
+		List<InscriptionGroupeCours>  inscriptionGroupeCours = inscriptionGroupeCoursRepository.findAll();
+		 
+		
+		Iterator<InscriptionGroupeCours> iterator = inscriptionGroupeCours.iterator();
+		while(iterator.hasNext()){
+			InscriptionGroupeCours i =  iterator.next();
+			if(!(i.getStudent().getCodeStudent().equals(codeStudent))) {	
+				iterator.remove();
+			}
+		}
+		
+		 return inscriptionGroupeCours;
 	}
 	
 	

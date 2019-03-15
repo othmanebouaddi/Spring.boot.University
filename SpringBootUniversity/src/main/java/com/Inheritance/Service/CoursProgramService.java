@@ -1,5 +1,6 @@
 package com.Inheritance.service;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -19,6 +20,8 @@ import com.Inheritance.repository.ProgramRepository;
 @Service
 public class CoursProgramService {
 	
+	private static final int ArrayList = 0;
+
 	@Autowired
 	CoursProgramRepository coursProgramRepository;
 	
@@ -28,8 +31,25 @@ public class CoursProgramService {
 	@Autowired
 	ProgramRepository programRepository;
 
-	public List<CoursProgram> getAllCoursProgram() {
+	public List<CoursProgram> getAllCoursPrograms() {
 		return coursProgramRepository.findAll();
+	}
+	
+	
+	@SuppressWarnings("null")
+	public List<CoursProgram> getAllCoursProgram( Integer fk_program) {
+		List<CoursProgram>  coursProgramL = coursProgramRepository.findAll();
+		
+		Iterator<CoursProgram> iterator = coursProgramL.iterator();
+		while(iterator.hasNext()){
+			CoursProgram i =  iterator.next();
+			if(!(i.getProgram().getProgram_initials().equals(fk_program))) { 
+				iterator.remove();
+			}
+		}
+		return coursProgramL;
+		
+	
 	}
 
 	public CoursProgram createCoursProgram(@Valid CoursProgram coursProgram, String coursId, Integer programId) {
