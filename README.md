@@ -4,14 +4,14 @@ he goal of this assigment is to have a REST application to manage a university a
 
 
 Operations:
-Create and get a Student
-Create and get a Prof
-Create and get a Program
-Create and get a Course
-Create and get a GroupCourse
-Link a Prof to GroupCourse
-Inscription to Program
-Inscription to GroupCourse
+Create and get a Student, 
+Create and get a Prof, 
+Create and get a Program, 
+Create and get a Course, 
+Create and get a GroupCourse, 
+Link a Prof to GroupCourse, 
+Inscription to Program, 
+Inscription to GroupCourse.
 
  
 
@@ -20,15 +20,15 @@ Angular
 
 
 Data model:
-Person
-Student
-Prof
-Program
-Course
-GroupCourse
-Enseignement
-InscriptionProgram
-InscriptionGroupCourse
-Season
-Cycle
+Person, 
+Student, 
+Prof, 
+Program, 
+Course, 
+GroupCourse, 
+Enseignement, 
+InscriptionProgram, 
+InscriptionGroupCourse, 
+Season, 
+Cycle.
 
