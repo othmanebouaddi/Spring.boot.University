@@ -1,0 +1,14 @@
+<div>
+	<div *ngIf="groupecoursL[0] != null; else elseBlock">
+		<ul *ngFor= 'let groupecours of groupecoursL' >
+			<li > {{ groupecours | json }}
+			</li>
+		</ul>
+	</div>
+	<ng-template #elseBlock>
+		<p>
+			This couses has no GroupCours
+		</p>
+	</ng-template>
+
+</div>

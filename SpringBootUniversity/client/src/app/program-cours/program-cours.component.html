@@ -1,0 +1,18 @@
+
+<button (click)='onDisplay()' class='btn btn-primary' type="button"  style='width: 300px;'>Display All Program cours</button>
+
+
+<div *ngIf="display">
+	<div *ngIf="programcoursL[0] != null; else elseBlock">
+		<ul (click)="onSelect(programcours)" *ngFor= 'let programcours of programcoursL' >
+			<li> <a> {{ programcours | json }}</a></li>
+		</ul>
+	</div>
+	<ng-template #elseBlock>
+		<p>
+			This university has no programs courses
+		</p>
+	</ng-template>
+
+</div>
+

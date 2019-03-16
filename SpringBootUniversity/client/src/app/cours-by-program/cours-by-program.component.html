@@ -1,0 +1,16 @@
+<div>
+	<div *ngIf="programcoursLP[0] != null; else elseBlock">
+		<ul (click)="onSelect(programcours.cours.initials)" *ngFor= 'let programcours of programcoursLP' >
+			<li > {{ programcours.cours.initials }}
+				 {{ programcours.cours.name }} de 
+				 {{ programcours.cours.credits }} Credits
+			</li>
+		</ul>
+	</div>
+	<ng-template #elseBlock>
+		<p>
+			This program has no couses
+		</p>
+	</ng-template>
+
+</div>

@@ -1,0 +1,18 @@
+<button (click)='onDisplay()' class='btn btn-primary' type="button"  style='width: 300px;'>Display students</button>
+
+
+<div *ngIf="display">
+	<div *ngIf="students[0] != null; else elseBlock">
+		<ul *ngFor= 'let student of students'>
+			<li>{{ student | json }}</li>
+		</ul>
+	</div>
+	<ng-template #elseBlock>
+		<p>
+			This university has no students
+		</p>
+	</ng-template>
+</div>
+
+
+

@@ -1,0 +1,44 @@
+<button  (click)='onDisplayAdd()' class='btn btn-primary' type="button" style='width: 300px;'> Add Inscription to Program</button>
+
+
+<div class="container-fluid" *ngIf="displayAdd">
+	<h1>Add Inscription to program</h1>
+
+	<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+		<div class="form-group">
+			<label>ID</label>
+			<input [class.is-invalid]="registrationForm.get('id').touched && registrationForm.get('id').invalid" formControlName="id" type="text" class="form-control">
+			<small [class.d-none]="registrationForm.get('id').valid || registrationForm.get('id').untouched" class="text-danger">Id is required</small>
+		</div>
+
+
+		<div class="form-group">
+			<label>Date Inscription</label>
+			<input [class.is-invalid]="registrationForm.get('dateInscription').touched && registrationForm.get('dateInscription').invalid" formControlName="dateInscription" type="text" class="form-control">
+			<small [class.d-none]="registrationForm.get('dateInscription').valid || registrationForm.get('dateInscription').untouched" class="text-danger">The date of inscription  is required</small>
+		</div>
+
+		<div class="form-group">
+			<label> Moyen of Program</label>
+			<input [class.is-invalid]="registrationForm.get('moyenProgram').touched && registrationForm.get('moyenProgram').invalid" formControlName="moyenProgram" type="text" class="form-control">
+			<small [class.d-none]="registrationForm.get('moyenProgram').valid || registrationForm.get('moyenProgram').untouched" class="text-danger">Moyen of Program is required</small>
+		</div>
+
+		<div class="form-group">
+			<label>Code Student</label>
+			<input [class.is-invalid]="registrationForm.get('CodeStudent').touched && registrationForm.get('CodeStudent').invalid" formControlName="CodeStudent" type="text" class="form-control">
+			<small [class.d-none]="registrationForm.get('CodeStudent').valid || registrationForm.get('CodeStudent').untouched" class="text-danger">Code Student is required</small>
+		</div>
+
+		<div class="form-group">
+			<label> Program initials</label>
+			<input [class.is-invalid]="registrationForm.get('program_initials').touched && registrationForm.get('program_initials').invalid" formControlName="program_initials" type="text" class="form-control">
+			<small [class.d-none]="registrationForm.get('program_initials').valid || registrationForm.get('program_initials').untouched" class="text-danger">Program initials is required</small>
+		</div>
+
+		<button class='btn btn-primary' type="submit" [disabled]="!registrationForm.valid">Register</button>
+		<button (click)='hint()'  class='btn btn-primary ml-2' type="button" type="button">Hint</button>
+	</form>
+	{{registrationForm.value | json}}
+</div>
+

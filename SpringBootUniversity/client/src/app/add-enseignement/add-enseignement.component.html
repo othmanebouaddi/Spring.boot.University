@@ -1,0 +1,44 @@
+<button  (click)='onDisplayAdd()' class='btn btn-primary' type="button" style='width: 300px;'> Add Enseignement</button>
+
+
+<div class="container-fluid" *ngIf="displayAdd">
+	<h1>Add Cours</h1>
+
+	<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+		<div class="form-group">
+			<label>ID</label>
+			<input [class.is-invalid]="registrationForm.get('id').touched && registrationForm.get('id').invalid" formControlName="id" type="text" class="form-control">
+			<small [class.d-none]="registrationForm.get('id').valid || registrationForm.get('id').untouched" class="text-danger">Id is required</small>
+		</div>
+
+
+		<div class="form-group">
+			<label>Nombre Heurs</label>
+			<input [class.is-invalid]="registrationForm.get('nombreHeurs').touched && registrationForm.get('nombreHeurs').invalid" formControlName="nombreHeurs" type="text" class="form-control">
+			<small [class.d-none]="registrationForm.get('nombreHeurs').valid || registrationForm.get('nombreHeurs').untouched" class="text-danger">The field nombre Heurs is required</small>
+		</div>
+
+		<div class="form-group">
+			<label>Matricul Prof</label>
+			<input [class.is-invalid]="registrationForm.get('matriculProf').touched && registrationForm.get('matriculProf').invalid" formControlName="matriculProf" type="text" class="form-control">
+			<small [class.d-none]="registrationForm.get('matriculProf').valid || registrationForm.get('matriculProf').untouched" class="text-danger">Matricul Prof is required</small>
+		</div>
+
+		<div class="form-group">
+			<label>Cours Initials</label>
+			<input [class.is-invalid]="registrationForm.get('coursInitials').touched && registrationForm.get('coursInitials').invalid" formControlName="coursInitials" type="text" class="form-control">
+			<small [class.d-none]="registrationForm.get('coursInitials').valid || registrationForm.get('coursInitials').untouched" class="text-danger">Cours Initials is required</small>
+		</div>
+
+		<div class="form-group">
+			<label>Groupe Cours Initials</label>
+			<input [class.is-invalid]="registrationForm.get('groupeCoursInitials').touched && registrationForm.get('groupeCoursInitials').invalid" formControlName="groupeCoursInitials" type="text" class="form-control">
+			<small [class.d-none]="registrationForm.get('groupeCoursInitials').valid || registrationForm.get('groupeCoursInitials').untouched" class="text-danger">Groupe Cours Initials is required</small>
+		</div>
+
+		<button class='btn btn-primary' type="submit" [disabled]="!registrationForm.valid">Register</button>
+		<button (click)='hint()'  class='btn btn-primary ml-2' type="button" type="button">Hint</button>
+	</form>
+	{{registrationForm.value | json}}
+</div>
+

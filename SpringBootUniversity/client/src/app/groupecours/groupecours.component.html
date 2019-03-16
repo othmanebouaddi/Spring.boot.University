@@ -1,0 +1,19 @@
+<button (click)='onDisplay()' class='btn btn-primary' type="button"  style='width: 300px;'>Display GroupeCours</button>
+
+
+
+<div *ngIf="display">
+	<div *ngIf="groupecoursL[0] != null; else elseBlock">
+		<ul *ngFor= 'let groupecours of groupecoursL'>
+			<li>{{ groupecours | json }}</li>
+		</ul>
+	</div>
+	<ng-template #elseBlock>
+		<p>
+			This university has no groupecours
+		</p>
+	</ng-template>
+
+</div>
+
+

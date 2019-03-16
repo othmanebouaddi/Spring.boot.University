@@ -1,0 +1,14 @@
+<button (click)='onDisplay()' class='btn btn-primary' type="button"  style='width: 300px;'>Display profs</button>
+
+<div *ngIf="display"> 
+	<div *ngIf="profs[0] != null; else elseBlock">
+		<ul *ngFor= 'let prof of profs'>
+			<li>{{ prof | json }}</li>
+		</ul>
+	</div>
+	<ng-template #elseBlock>
+		<p>
+			This university has no profs
+		</p>
+	</ng-template>
+</div>

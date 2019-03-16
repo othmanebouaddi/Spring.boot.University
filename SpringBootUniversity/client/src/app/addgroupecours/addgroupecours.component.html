@@ -1,0 +1,44 @@
+<button  (click)='onDisplayAdd()' class='btn btn-primary' type="button" style='width: 300px;'> Add group of course</button>
+
+
+<div class="container-fluid" *ngIf="displayAdd">
+	<h1>Add group of course</h1>
+
+	<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+		<div class="form-group">
+			<label>Groupe of Course</label>
+			<input [class.is-invalid]="registrationForm.get('groupeCoursId').touched && registrationForm.get('groupeCoursId').invalid" formControlName="groupeCoursId" type="text" class="form-control">
+			<small [class.d-none]="registrationForm.get('groupeCoursId').valid || registrationForm.get('groupeCoursId').untouched" class="text-danger">GroupeCours is required</small>
+		</div>
+
+
+		<div class="form-group">
+			<label>Initials</label>
+			<input [class.is-invalid]="registrationForm.get('initials').touched && registrationForm.get('initials').invalid" formControlName="initials" type="text" class="form-control">
+			<small [class.d-none]="registrationForm.get('initials').valid || registrationForm.get('initials').untouched" class="text-danger">Initials are required</small>
+		</div>
+
+		<div class="form-group">
+			<label>Year</label>
+			<input [class.is-invalid]="registrationForm.get('year').touched && registrationForm.get('year').invalid" formControlName="year" type="text" class="form-control">
+			<small [class.d-none]="registrationForm.get('year').valid || registrationForm.get('year').untouched" class="text-danger">The year is required</small>
+		</div>
+
+		<div class="form-group">
+			<label>Season</label>
+			<input [class.is-invalid]="registrationForm.get('season').touched && registrationForm.get('season').invalid" formControlName="season" type="text" class="form-control">
+			<small [class.d-none]="registrationForm.get('season').valid || registrationForm.get('season').untouched" class="text-danger">The season is required</small>
+		</div>
+
+		<div class="form-group">
+			<label>Cours Initial</label>
+			<input [class.is-invalid]="registrationForm.get('coursInitials').touched && registrationForm.get('coursInitials').invalid" formControlName="coursInitials" type="text" class="form-control">
+			<small [class.d-none]="registrationForm.get('coursInitials').valid || registrationForm.get('coursInitials').untouched" class="text-danger">The course initial is required</small>
+		</div>
+
+
+		<button class='btn btn-primary' type="submit" [disabled]="!registrationForm.valid">Register</button>
+		<button (click)='hint()'  class='btn btn-primary ml-2' type="button">Hint</button>
+	</form>
+	{{registrationForm.value | json}}
+</div>

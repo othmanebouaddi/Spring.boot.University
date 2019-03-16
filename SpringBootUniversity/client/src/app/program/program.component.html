@@ -1,0 +1,20 @@
+
+<button (click)='onDisplay()' class='btn btn-primary' type="button"  style='width: 300px;'>Display programs</button>
+
+
+<div *ngIf="display">
+	<div *ngIf="programs[0] != null; else elseBlock">
+		<ul  *ngFor= 'let program of programs'>
+			<!-- <li ><a href="/programcours">{{ program.cycle }} en  {{ program.name }} </a></li> -->
+			<li (click)="onSelect(program)" >{{ program.cycle }} en  {{ program.name }}</li>
+		</ul>
+	</div>
+	<ng-template #elseBlock>
+		<p>
+			This university has no programs
+		</p>
+	</ng-template>
+
+</div>
+
+

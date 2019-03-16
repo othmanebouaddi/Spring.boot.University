@@ -1,0 +1,11 @@
+nav{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: space-between;
+}
+
+div{
+	margin-bottom: 30px;
+	width: 30%;
+}
