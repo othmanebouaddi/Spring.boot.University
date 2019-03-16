@@ -1,6 +1,6 @@
 # Spring.boot.University
 
-he goal of this assigment is to have a REST application to manage a university application. The application needs to be developped with Java, Spring Boot and Angular.
+The goal of this assigment is to have a REST application to manage a university application. The application needs to be developped with Java, Spring Boot and Angular.
 
 
 Operations:
